@@ -16,7 +16,7 @@ export function Hero() {
       <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-950/40 px-3.5 py-1 text-xs font-medium text-cyan-300 backdrop-blur-sm">
         <Zap className="h-3.5 w-3.5 text-cyan-400" />
         <span>
-          Procedural Web Audio API • 0 KB Audio Assets • &lt; 1.5 KB JS
+          Procedural Web Audio API • 0 KB Audio Assets • ~2.5 KB JS
         </span>
       </div>
 

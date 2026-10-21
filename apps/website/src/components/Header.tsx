@@ -30,7 +30,7 @@ export function Header() {
                 TONELY
               </span>
               <span className="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2 py-0.5 text-[10px] font-mono font-semibold text-cyan-300">
-                v0.1.0
+                v0.1.1
               </span>
             </div>
           </a>

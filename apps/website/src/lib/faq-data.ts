@@ -12,7 +12,7 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "Why is procedural Web Audio better than traditional audio assets?",
     answer:
-      "Traditional audio assets require HTTP network requests that introduce 120ms to 450ms of network latency on the first play, consume bandwidth, and introduce cross-origin and asset-path headaches. Tonely has 0 KB audio assets, triggers with < 1ms latency, and adds under 1.5 KB gzipped to your total bundle.",
+      "Traditional audio assets require HTTP network requests that introduce 120ms to 450ms of network latency on the first play, consume bandwidth, and introduce cross-origin and asset-path headaches. Tonely has 0 KB audio assets, triggers with < 1ms latency, and adds about 2.5 KB gzipped to your total bundle.",
   },
   {
     question: "Is Tonely safe for Next.js SSR, React Server Components, and Server Actions?",
@@ -32,6 +32,6 @@ export const FAQ_ITEMS: FAQItem[] = [
   {
     question: "What is the bundle size impact of Tonely?",
     answer:
-      "Tonely has zero runtime dependencies and is smaller than 1.5 KB gzipped (less than 4 KB uncompressed). It is significantly smaller than a typical single icon SVG or standard audio library like Howler.js.",
+      "Tonely has zero runtime dependencies and is about 2.5 KB gzipped (about 8 KB minified). It is significantly smaller than a typical single icon SVG or standard audio library like Howler.js.",
   },
 ];

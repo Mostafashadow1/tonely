@@ -1,0 +1,87 @@
+# Tonely (npm: `tonely`)
+
+> Tonely plays short UI feedback sounds (success, error, click, toggle...) synthesized at runtime with the Web Audio API. No audio files, no network requests, ~2.3 KB gzip, SSR-safe no-op on the server. Works with React, Next.js, Vue, Svelte and vanilla JS.
+
+Install: `npm install tonely`
+
+## When to use
+- The app needs sound feedback for actions: form saved, payment done, error, button click, toggle, delete, new notification.
+- You want sounds without shipping .mp3/.wav files or handling audio asset paths.
+- You need it to be safe in Next.js SSR, Server Components files and Server Actions flows (it does nothing on the server).
+- You want toast notifications (Sonner, shadcn/ui) to play a matching sound.
+
+## When not to use
+- You need to play music, voice, or a specific recorded sound file. Use HTMLAudioElement or Howler.js.
+- You need audio that plays without any prior user interaction. Browsers block that for every library.
+
+## Rules for correct usage
+- Import the singleton: `import { tonely } from "tonely"`. Do not create an AudioContext yourself.
+- Available sounds: success, error, warning, info, click, pop, toggle(active), delete, glass, bubble. Do not invent other method names.
+- Themes: "modern" (default), "glass", "minimal", "playful", "retro". Set globally with `tonely.setTheme(name)` or per call with `{ theme }`.
+- Per-call options: `{ volume, pitch, playbackRate, theme }` where volume is 0 to 1.
+- The React hook lives in the subpath: `import { useTonely } from "tonely/react"`. Files using it in Next.js App Router must start with "use client".
+- Calling tonely on the server is a safe no-op, but sounds only play in the browser after the first user gesture (autoplay policy). Trigger sounds from event handlers.
+- Map HTTP results with `tonely.fromStatus(res.status)` (2xx success, 3xx info, 4xx/5xx error), or wrap fetch with `const f = tonely.wrapFetch()`.
+- Always give users a way to mute: `tonely.setMuted(true)`. Keep sounds for meaningful events, not every hover.
+
+## Examples
+
+### Vanilla JS / any framework
+
+```ts
+import { tonely } from "tonely";
+
+saveButton.addEventListener("click", async () => {
+  tonely.click();
+  const res = await fetch("/api/save", { method: "POST" });
+  tonely.fromStatus(res.status); // 2xx -> success, 4xx/5xx -> error
+});
+```
+
+### React / Next.js client component
+
+```tsx
+"use client";
+import { useTonely } from "tonely/react";
+
+export function PayButton() {
+  const { click, success, error } = useTonely({ theme: "glass" });
+  return (
+    <button
+      onClick={async () => {
+        click();
+        try { await pay(); success(); } catch { error(); }
+      }}
+    >
+      Pay
+    </button>
+  );
+}
+```
+
+### Sonner / shadcn toasts with sound
+
+```ts
+import { toast as base } from "sonner";
+import { tonely } from "tonely";
+
+export const toast = {
+  success: (m: string) => { tonely.success(); return base.success(m); },
+  error: (m: string) => { tonely.error(); return base.error(m); },
+  warning: (m: string) => { tonely.warning(); return base.warning(m); },
+  info: (m: string) => { tonely.info(); return base.info(m); },
+};
+```
+
+## API summary
+- `tonely.play(name, options?)` and shortcuts `success() error() warning() info() click() pop() toggle(active) delete() glass() bubble()`; each returns `Promise<boolean>` (false on server or when muted).
+- `tonely.fromStatus(status, options?)`, `tonely.wrapFetch()`, `tonely.track(promise, options?)`.
+- `tonely.setVolume(0..1)`, `setMuted(bool)`, `setTheme(theme)` and matching getters.
+- `createTonely(config?)` for an isolated instance with `{ volume, theme, muted }`.
+- `tonely/react`: `useTonely(options?)`, `TonelyProvider` (`config` prop), `useTonelyContext()`.
+
+## Links
+- [Website](https://tone-ly.vercel.app/)
+- [README](https://github.com/Mostafashadow1/tonely#readme)
+- [npm](https://www.npmjs.com/package/tonely)
+- [Issues](https://github.com/Mostafashadow1/tonely/issues)

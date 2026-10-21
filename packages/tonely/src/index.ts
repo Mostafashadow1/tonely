@@ -121,7 +121,7 @@ export function createTonely(config?: TonelyConfig): TonelyInstance & {
 
   return {
     ...instance,
-    wrapFetch: () => createFetchWrapper(instance),
+    wrapFetch: (customFetch?: typeof fetch) => createFetchWrapper(instance, customFetch),
     track: <T>(promise: Promise<T>, opts?: SoundOptions) => trackPromise(instance, promise, opts),
   };
 }

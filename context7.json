@@ -1,0 +1,25 @@
+{
+  "$schema": "https://context7.com/schema/context7.json",
+  "projectTitle": "Tonely",
+  "description": "Tonely plays short UI feedback sounds (success, error, click, toggle...) synthesized at runtime with the Web Audio API. No audio files, no network requests, ~2.3 KB gzip, SSR-safe no-op on the server. Works with React, Next.js, Vue, Svelte and vanilla JS.",
+  "folders": [
+    "packages/tonely",
+    "apps/website"
+  ],
+  "excludeFolders": [
+    "**/node_modules",
+    "**/dist",
+    "**/tests",
+    "**/__tests__"
+  ],
+  "rules": [
+    "Import the singleton: `import { tonely } from \"tonely\"`. Do not create an AudioContext yourself.",
+    "Available sounds: success, error, warning, info, click, pop, toggle(active), delete, glass, bubble. Do not invent other method names.",
+    "Themes: \"modern\" (default), \"glass\", \"minimal\", \"playful\", \"retro\". Set globally with `tonely.setTheme(name)` or per call with `{ theme }`.",
+    "Per-call options: `{ volume, pitch, playbackRate, theme }` where volume is 0 to 1.",
+    "The React hook lives in the subpath: `import { useTonely } from \"tonely/react\"`. Files using it in Next.js App Router must start with \"use client\".",
+    "Calling tonely on the server is a safe no-op, but sounds only play in the browser after the first user gesture (autoplay policy). Trigger sounds from event handlers.",
+    "Map HTTP results with `tonely.fromStatus(res.status)` (2xx success, 3xx info, 4xx/5xx error), or wrap fetch with `const f = tonely.wrapFetch()`.",
+    "Always give users a way to mute: `tonely.setMuted(true)`. Keep sounds for meaningful events, not every hover."
+  ]
+}
