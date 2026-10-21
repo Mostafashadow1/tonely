@@ -5,13 +5,13 @@ import type { TonelyInstance, SoundOptions } from '../types';
  * Wraps a standard window.fetch function to automatically trigger
  * sound feedback based on response status code (e.g. 200 -> success, 4xx/5xx -> error).
  */
-export function createFetchWrapper(tonely: TonelyInstance) {
+export function createFetchWrapper(tonely: TonelyInstance, customFetch?: typeof fetch) {
   return function wrappedFetch(
     input: RequestInfo | URL,
     init?: RequestInit,
     soundOptions?: SoundOptions
   ): Promise<Response> {
-    const fetchFn = typeof window !== 'undefined' ? window.fetch : globalThis.fetch;
+    const fetchFn = customFetch ?? (typeof window !== 'undefined' ? window.fetch : globalThis.fetch);
     return fetchFn(input, init)
       .then((res) => {
         tonely.fromStatus(res.status, soundOptions);

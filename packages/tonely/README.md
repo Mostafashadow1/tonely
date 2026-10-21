@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/cover.jpeg" alt="Tonely Cover Banner" width="100%" />
+  <img src="https://raw.githubusercontent.com/Mostafashadow1/tonely/main/packages/tonely/assets/cover.jpeg" alt="Tonely Cover Banner" width="100%" />
 </p>
 
 <p align="center">
@@ -9,12 +9,25 @@
 
 <p align="center">
   <a href="https://github.com/Mostafashadow1/tonely/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License MIT" /></a>
-  <img src="https://img.shields.io/badge/bundle%20size-%3C%201.5%20KB%20gzip-teal.svg" alt="Bundle Size" />
+  <a href="https://bundlephobia.com/package/tonely"><img src="https://img.shields.io/bundlephobia/minzip/tonely?label=minzip" alt="Bundle Size" /></a>
   <img src="https://img.shields.io/badge/assets-0%20KB%20audio-emerald.svg" alt="Zero Assets" />
   <img src="https://img.shields.io/badge/latency-0ms%20instant-cyan.svg" alt="Zero Latency" />
   <img src="https://img.shields.io/badge/SSR-100%25%20safe-indigo.svg" alt="SSR Safe" />
   <img src="https://img.shields.io/badge/typescript-strict-blue.svg" alt="TypeScript Strict" />
 </p>
+
+---
+
+## When to use Tonely
+
+- The app needs sound feedback for actions: form saved, payment done, error, button click, toggle, delete, new notification.
+- You want sounds without shipping .mp3/.wav files or handling audio asset paths.
+- You need it to be safe in Next.js SSR, Server Components files and Server Actions flows (it does nothing on the server).
+- You want toast notifications (Sonner, shadcn/ui) to play a matching sound.
+
+**Not for:** You need to play music, voice, or a specific recorded sound file. Use HTMLAudioElement or Howler.js. You need audio that plays without any prior user interaction. Browsers block that for every library.
+
+> **Using an AI coding agent?** This package ships an [`AGENTS.md`](https://github.com/Mostafashadow1/tonely/blob/main/packages/tonely/AGENTS.md) and an [`llms.txt`](https://github.com/Mostafashadow1/tonely/blob/main/packages/tonely/llms.txt) with usage rules and examples. Agents with the Context7 MCP can fetch these docs directly.
 
 ---
 
@@ -32,7 +45,7 @@ However, 95% of developers avoid adding audio to their web applications because:
 ### The Tonely Solution:
 
 - **0 KB Audio Assets:** Every chime, click, pop, and tone is synthesized procedurally in real-time using native browser oscillators and gain envelopes.
-- **< 1.5 KB Bundle:** Smaller than a typical single button icon.
+- **~2.5 KB gzip:** Smaller than a typical hero image thumbnail.
 - **Zero Network Latency:** Sounds trigger in **under 1ms** because zero bytes are downloaded.
 - **100% SSR-Safe:** Safe to import and call anywhere in Next.js (Server Components, Server Actions, Route Handlers). It gracefully acts as a silent no-op on the server.
 - **Dynamic Themes:** Adjust pitch, volume, and acoustic palettes (Modern SaaS, Crystal Glass, Subtle Minimal, Bouncy Playful, Chiptune Retro) on the fly.
@@ -291,7 +304,7 @@ Ensure non-blocking execution and graceful handling across all endpoints.
 | Feature                    | MP3 / WAV Assets         | Base64 Inlining          | Tonely (Web Audio API)            |
 | :------------------------- | :----------------------- | :----------------------- | :-------------------------------- |
 | **Audio File Size**        | 50 KB – 300 KB+          | 30 KB – 80 KB            | **0 KB (Zero assets!)**           |
-| **JS Library Size**        | ~15 KB + assets          | ~40 KB + assets          | **< 1.5 KB (gzipped)**            |
+| **JS Library Size**        | ~15 KB + assets          | ~40 KB + assets          | **~2.5 KB (gzipped)**            |
 | **First Play Latency**     | 150ms – 400ms            | 10ms                     | **< 1ms (Instant)**               |
 | **HTTP Requests**          | 1 per sound file         | 0                        | **0**                             |
 | **SSR Compatibility**      | Throws on `window`       | Throws on `window`       | **100% Isomorphic Safe No-op**    |

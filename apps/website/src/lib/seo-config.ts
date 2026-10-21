@@ -5,7 +5,7 @@ export const SITE_CONFIG = {
   defaultTitle: "Tonely — Zero-Asset UI Sound Design for Modern Web",
   titleTemplate: "%s | Tonely",
   description:
-    "Ultra-lightweight (<1.5 KB) procedural Web Audio API sound library for React, Next.js, and web apps. Zero MP3 assets, zero network latency, instant feedback.",
+    "Ultra-lightweight (~2.5 KB) procedural Web Audio API sound library for React, Next.js, and web apps. Zero MP3 assets, zero network latency, instant feedback.",
   author: {
     name: "Mostafa Mohamed Abdalla",
     url: "https://github.com/Mostafashadow1",

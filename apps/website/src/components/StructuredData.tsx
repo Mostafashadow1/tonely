@@ -46,7 +46,7 @@ export function StructuredData() {
         downloadUrl: SITE_CONFIG.npmUrl,
         codeRepository: SITE_CONFIG.repoUrl,
         programmingLanguage: ["TypeScript", "JavaScript", "React", "Next.js"],
-        softwareVersion: "0.1.0",
+        softwareVersion: "0.1.1",
         license: "https://opensource.org/licenses/MIT",
         offers: {
           "@type": "Offer",

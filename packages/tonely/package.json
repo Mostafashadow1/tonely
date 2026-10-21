@@ -1,7 +1,7 @@
 {
   "name": "tonely",
-  "version": "0.1.0",
-  "description": "Zero-asset, ultra-lightweight synthesized UI sound design system for Next.js, React, Vue, Svelte, and Vanilla JS powered by procedural Web Audio API",
+  "version": "0.1.1",
+  "description": "UI sound effects for web apps (success, error, click, toggle) synthesized with the Web Audio API. No audio files, ~2.5 KB, SSR-safe. React, Next.js, Vue, Svelte.",
   "type": "module",
   "sideEffects": false,
   "license": "MIT",
@@ -9,25 +9,29 @@
   "homepage": "https://tone-ly.vercel.app/",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Mostafashadow1/tonely.git"
+    "url": "git+https://github.com/Mostafashadow1/tonely.git",
+    "directory": "packages/tonely"
   },
   "bugs": {
     "type": "git",
     "url": "https://github.com/Mostafashadow1/tonely/issues"
   },
   "keywords": [
-    "sound",
     "ui-sounds",
-    "audio",
+    "sound-effects",
+    "web-audio",
     "web-audio-api",
+    "audio-feedback",
     "micro-interactions",
-    "zero-assets",
-    "synthesizer",
-    "earcon",
-    "haptic",
-    "nextjs",
+    "notification-sound",
+    "toast",
+    "sonner",
+    "no-assets",
+    "ssr-safe",
     "react",
+    "nextjs",
     "vue",
+    "svelte",
     "typescript"
   ],
   "main": "./dist/index.cjs",
@@ -56,14 +60,15 @@
     }
   },
   "files": [
-    "assets",
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "AGENTS.md",
+    "llms.txt"
   ],
   "scripts": {
-    "build": "tsup src/index.ts src/react/index.ts --format esm,cjs --dts --clean",
-    "dev": "tsup src/index.ts src/react/index.ts --format esm,cjs --dts --watch",
+    "build": "rm -rf dist && tsup",
+    "dev": "tsup --watch",
     "type-check": "tsc --noEmit",
     "test": "vitest run",
     "clean": "rm -rf dist"

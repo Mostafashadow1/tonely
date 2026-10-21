@@ -34,7 +34,7 @@ export function ComparisonTable() {
               <tr>
                 <td className="py-3.5 pr-4 text-slate-300 font-sans font-semibold">Library Size (gzipped)</td>
                 <td className="py-3.5 px-4 text-slate-400">~15 KB (Howler) + Assets</td>
-                <td className="py-3.5 pl-4 text-emerald-400 font-bold">&lt; 1.5 KB</td>
+                <td className="py-3.5 pl-4 text-emerald-400 font-bold">~2.5 KB</td>
               </tr>
               <tr>
                 <td className="py-3.5 pr-4 text-slate-300 font-sans font-semibold">First-Sound Latency</td>
